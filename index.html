@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini Chic · Céu de Areia (prévia de redesign)</title>
+<meta name="description" content="Collab Celle Moreira × Mini Chic. Moda feminina no Smart Shopping Campo Grande e na loja online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root{--linho:#F4EDE3;--areia:#E6D5BD;--caramelo:#A8784F;--caramelo-esc:#8A5F3B;--cacau:#3A2A1F;--muted:#6E5D50;--noite:#1F1712;--linha:#DCCDB8;
+  --display:'Marcellus',Georgia,serif;--texto:'Jost',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{margin:0;background:var(--linho);color:var(--cacau);font-family:var(--texto);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg,canvas{display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--caramelo);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:.005em}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:500;font-size:16px;text-decoration:none;white-space:nowrap;border:0;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-cacau{background:var(--cacau);color:var(--linho)}.btn-cacau:hover{background:#000}
+.btn-claro{background:var(--linho);color:var(--cacau)}
+.btn-linha{border:1.2px solid currentColor;background:transparent}
+.marca{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--caramelo)}
+.marca svg{height:34px;width:auto}
+.marca span{font-family:var(--texto);font-weight:500;font-size:13px;letter-spacing:.42em;line-height:1.15;display:flex;flex-direction:column}
+
+/* abertura */
+#intro{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;pointer-events:none;color:var(--caramelo)}
+#intro svg{height:84px;width:auto;animation:sobe 1s cubic-bezier(.2,.7,.2,1) both}
+#intro span{font-weight:500;letter-spacing:.6em;font-size:15px;padding-left:.6em;animation:sobe 1s .15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes sobe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sem-3d #intro{display:none}
+
+/* topo */
+#topo{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,box-shadow .3s,opacity .6s;opacity:0}
+body.aberto #topo,.sem-3d #topo{opacity:1}
+#topo .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+#topo nav{display:flex;align-items:center;gap:6px}
+#topo nav a.lk{text-decoration:none;font-size:15px;padding:10px 14px;border-radius:999px}
+#topo nav a.lk:hover{background:rgba(58,42,31,.07)}
+#topo.solido{background:rgba(244,237,227,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
+@media (max-width:820px){#topo nav a.lk{display:none}}
+
+/* hero */
+#hero{position:relative;height:240vh}
+#hero .fixo{position:sticky;top:0;height:100vh;overflow:hidden}
+#heroGL{position:absolute;inset:0;width:100%;height:100%}
+.sem-3d #hero{height:auto}
+.sem-3d #hero .fixo{background:url(img/p-guatemala.webp) center/cover;height:100vh}
+.hero-txt{position:absolute;left:0;right:0;bottom:clamp(36px,8vh,90px);z-index:2;opacity:0;transform:translateY(24px);transition:opacity 1s .2s,transform 1.2s .2s cubic-bezier(.2,.7,.2,1)}
+body.aberto .hero-txt,.sem-3d .hero-txt{opacity:1;transform:none}
+.hero-txt .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+@media (min-width:761px){.hero-txt h1{max-width:40vw}.hero-txt p{max-width:min(40ch,38vw)}}
+.kicker{font-size:16px;color:var(--caramelo-esc);font-weight:500}
+.hero-txt h1{font-size:clamp(58px,8.6vw,148px);line-height:.86;color:var(--cacau);margin-left:-.04em}
+.hero-txt p{margin:4px 0 10px;max-width:40ch;font-size:18px;color:#4D3B2E}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.rolar{position:absolute;right:clamp(20px,5vw,64px);bottom:clamp(36px,8vh,90px);z-index:2;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;writing-mode:vertical-rl;letter-spacing:.08em}
+.rolar i{display:block;width:1px;height:56px;background:var(--muted);animation:linha 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes linha{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:760px){.hero-txt{bottom:0;padding:60px 0 92px;background:linear-gradient(rgba(244,237,227,0),rgba(244,237,227,.92) 38%)}.hero-txt p{font-size:16px}.rolar{display:none}}
+
+/* passarela */
+#passarela{position:relative;background:var(--noite);color:var(--linho)}
+#passarela .fixo{position:sticky;top:0;height:100vh;overflow:hidden}
+#passGL{position:absolute;inset:0;width:100%;height:100%}
+.pass-titulo{position:absolute;top:104px;left:0;right:0;z-index:2;pointer-events:none}
+.pass-titulo h2{font-size:clamp(30px,3.4vw,46px);max-width:14ch;line-height:1.05}
+.pass-titulo p{margin:10px 0 0;color:#BFAE9B;max-width:34ch;font-size:16px}
+#pCap{position:absolute;z-index:2;right:clamp(20px,5vw,64px);bottom:clamp(28px,7vh,72px);width:min(360px,calc(100vw - 40px));background:rgba(31,23,18,.72);backdrop-filter:blur(6px);border:1px solid rgba(244,237,227,.14);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+#pCap.troca .anima{animation:entra .6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#pNum{font-size:14px;color:#BFAE9B}
+#pNome{font-size:28px;line-height:1.1}
+.precos{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:4px}
+#pPreco{font-size:22px;font-weight:500}
+#pPix{color:#E2C39B;font-weight:500}
+#pParc{width:100%;font-size:14px;color:#BFAE9B}
+.pass-nav{display:flex;gap:8px;margin-top:12px;align-items:center}
+.circ{width:48px;height:48px;border-radius:50%;border:1.2px solid rgba(244,237,227,.5);background:none;color:inherit;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.circ:hover{background:rgba(244,237,227,.1)}
+.pass-nav .btn{margin-left:auto;min-height:48px}
+@media (max-width:760px){.pass-titulo{top:88px}.pass-titulo p{display:none}#pCap{left:16px;right:16px;width:auto;bottom:16px;padding:16px 18px}#pNome{font-size:22px}}
+.sem-3d #passarela .fixo{display:none}
+
+/* história com parallax */
+.historia{position:relative;padding:clamp(90px,14vw,180px) 0;overflow:hidden}
+.historia .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,6vw,100px);align-items:center}
+.colagem{position:relative;height:clamp(520px,62vw,760px)}
+.colagem figure{position:absolute;margin:0;overflow:hidden;border-radius:999px 999px 6px 6px;box-shadow:0 30px 60px -30px rgba(58,42,31,.45)}
+.colagem figure img{width:100%;height:118%;object-fit:cover;will-change:transform}
+.colagem .f1{left:0;top:6%;width:56%;aspect-ratio:779/1093}
+.colagem .f2{right:0;top:30%;width:48%;aspect-ratio:779/1093}
+.historia h2{font-size:clamp(40px,5vw,72px);line-height:1}
+.historia p{max-width:46ch;color:#4D3B2E;margin:22px 0 0}
+.nomes{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px;padding:0;list-style:none}
+.nomes li{border:1px solid var(--linha);border-radius:999px;padding:6px 16px;font-size:15px}
+@media (max-width:860px){.historia .wrap{grid-template-columns:1fr}.colagem{height:120vw;max-height:620px}}
+
+/* lançamentos: arcos 3D */
+.lanc{padding:clamp(70px,10vw,130px) 0;background:var(--areia)}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:clamp(36px,5vw,64px)}
+.cab h2{font-size:clamp(40px,5vw,72px);line-height:1}
+.cab p{margin:0;max-width:36ch;color:#5C4A3C}
+.arcos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px)}
+@media (max-width:900px){.arcos{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+.arco3d{perspective:900px}
+.arco-in{position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1);--sx:0px;--sy:0px}
+.arco-foto{position:relative;aspect-ratio:779/1093;border-radius:50% 50% 6px 6px / 35.65% 35.65% 6px 6px;overflow:hidden;background:#d9c4a6}
+.arco-foto img{width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.97)}
+.arco-recorte{position:absolute;pointer-events:none;transform-origin:50% 100%;transform:translate3d(var(--sx),var(--sy),0) translateZ(0) scale(1);transition:transform .9s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 18px 24px rgba(58,42,31,.28))}
+.arco-recorte img{width:100%;height:100%}
+.revela.visto .arco-recorte{transform:translate3d(var(--sx),var(--sy),0) translateZ(46px) scale(1.035)}
+.arco-txt{display:flex;flex-direction:column;gap:2px;margin-top:20px}
+.arco-txt h3{font-size:26px}
+.arco-txt .precos span:first-child{font-size:19px;font-weight:500}
+.arco-txt .pix{color:var(--caramelo-esc);font-weight:500}
+.arco-txt .parc{font-size:14px;color:var(--muted);width:100%}
+.arco-txt a{margin-top:12px;align-self:flex-start;font-weight:500;text-underline-offset:4px}
+
+/* grade completa */
+.grade-sec{padding:clamp(70px,10vw,120px) 0}
+.grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 18px}
+@media (max-width:1000px){.grade{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:680px){.grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px}}
+.item{display:flex;flex-direction:column;gap:4px;text-decoration:none}
+.item .ft{aspect-ratio:779/1093;overflow:hidden;border-radius:50% 50% 4px 4px / 35.65% 35.65% 4px 4px;background:var(--areia);margin-bottom:10px}
+.item .ft img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.item:hover .ft img{transform:scale(1.05)}
+.item h3{font-family:var(--texto);font-size:16px;font-weight:500}
+.item .tag{font-size:13px;color:var(--caramelo-esc)}
+.item .pr{font-size:15px}.item .pr b{font-weight:600}
+.item .pr span{color:var(--muted);font-size:14px}
+
+/* loja física */
+.loja{background:var(--noite);color:var(--linho);padding:clamp(80px,11vw,140px) 0;overflow:hidden}
+.loja .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(30px,6vw,90px);align-items:center}
+.loja h2{font-size:clamp(40px,5vw,72px);line-height:1}
+.loja p{color:#CDBCA8;max-width:40ch}
+.horas{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:0;max-width:380px}
+.horas li{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid rgba(244,237,227,.15)}
+.horas li:last-child{border-bottom:1px solid rgba(244,237,227,.15)}
+.loja{position:relative;isolation:isolate}
+.loja::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/s-cortina-bg.webp) center/cover;opacity:.55}
+.loja::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(31,23,18,.96) 0%,rgba(31,23,18,.82) 45%,rgba(31,23,18,.55) 100%)}
+.cena-loja{margin:0;justify-self:center;width:min(440px,100%);display:flex;flex-direction:column;gap:14px}
+.moldura{position:relative;aspect-ratio:762/850;border-radius:999px 999px 8px 8px;overflow:hidden;box-shadow:0 50px 90px -30px rgba(0,0,0,.75),0 0 0 1px rgba(232,206,170,.18)}
+.moldura img{width:100%;height:116%;object-fit:cover;will-change:transform;filter:contrast(1.03)}
+.moldura::after{content:"";position:absolute;inset:-50%;pointer-events:none;opacity:.10;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grao .9s steps(3) infinite}
+.moldura::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(20,14,10,.45) 100%)}
+@keyframes grao{0%{transform:translate(0,0)}33%{transform:translate(-4%,3%)}66%{transform:translate(3%,-5%)}100%{transform:translate(0,0)}}
+.cena-loja figcaption{font-size:14px;color:#BFAE9B;text-align:center}
+@media (max-width:860px){.loja .wrap{grid-template-columns:1fr}.cena-loja{width:min(360px,100%)}}
+
+/* pagamento + rodapé */
+.pagar{padding:56px 0;border-bottom:1px solid var(--linha)}
+.pagar .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
+.pagar strong{display:block;font-family:var(--display);font-weight:400;font-size:24px;margin-bottom:4px}
+.pagar span{color:var(--muted);font-size:15px}
+@media (max-width:760px){.pagar .wrap{grid-template-columns:1fr}}
+footer{padding:48px 0 90px;font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-start}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
+footer a{text-decoration:none}footer a:hover{color:var(--cacau);text-decoration:underline}
+.zap{position:fixed;right:18px;bottom:18px;z-index:25;width:58px;height:58px;border-radius:50%;background:#2D8A57;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.previa{position:fixed;left:14px;bottom:14px;z-index:25;background:var(--cacau);color:var(--linho);font-size:12px;padding:8px 14px;border-radius:999px}
+@media (max-width:760px){.previa{top:84px;bottom:auto;left:auto;right:12px;font-size:11px;padding:6px 12px;opacity:.9}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="intro" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 736"><path fill="#A8784F" d="M253.5 728.4C257.9 726.5 262.2 725.6 269.5 725.1C276.2 724.6 281.1 723.7 284.2 722.2C286.8 721.1 291.7 719.4 295.0 718.6C302.5 716.7 310.9 712.4 318.2 706.8C321.3 704.5 326.1 701.3 328.8 699.8C332.4 697.8 335.1 695.3 338.0 691.0C340.3 687.6 344.0 683.8 346.3 682.3C348.6 680.9 354.6 675.8 359.7 670.9C364.8 666.1 371.6 660.7 374.9 659.0C382.0 655.2 389.8 647.3 393.3 640.4C394.7 637.7 398.8 632.2 402.4 628.2C410.3 619.5 421.3 598.9 421.3 592.9C421.3 588.6 414.8 575.8 411.2 573.0C406.2 569.0 403.0 570.0 374.2 584.4C359.5 591.7 344.7 598.5 341.3 599.3C337.8 600.2 320.8 608.1 302.0 617.5C271.6 632.7 268.2 634.2 261.6 634.9C257.7 635.4 252.0 636.8 249.0 638.1C244.2 640.2 242.0 640.5 231.0 640.5C220.0 640.5 217.8 640.2 213.0 638.1C210.0 636.8 204.3 635.4 200.4 634.9C194.1 634.2 190.7 632.9 172.0 623.5C160.4 617.7 148.1 612.2 144.7 611.3C141.3 610.5 129.1 605.1 117.7 599.3C106.2 593.6 94.1 588.2 90.8 587.4C87.5 586.5 78.9 582.9 71.7 579.4C55.9 571.6 52.9 571.3 46.9 576.7C37.7 585.1 37.5 590.0 46.0 607.1C49.4 613.9 54.1 622.0 56.5 625.0C58.8 628.0 61.7 632.5 63.0 635.0C64.3 637.5 70.5 644.9 77.0 651.5C83.4 658.1 90.2 666.0 92.2 669.1C94.5 672.8 97.5 675.8 100.8 677.8C103.5 679.5 110.3 685.1 115.7 690.2C125.2 699.1 126.4 699.9 144.8 708.9C164.0 718.4 164.0 718.4 174.3 719.1C181.7 719.6 185.9 720.4 189.5 722.1C193.0 723.7 197.4 724.6 204.5 725.1C211.8 725.6 216.1 726.5 220.5 728.4C225.7 730.6 228.0 731.0 237.0 731.0C246.0 731.0 248.3 730.6 253.5 728.4ZM247.5 620.4C250.8 619.1 256.8 617.5 260.8 617.1C269.3 616.1 279.5 611.5 288.4 604.7C292.3 601.7 296.0 599.9 299.7 599.0C305.8 597.7 340.8 580.7 345.5 576.8C352.8 570.9 354.9 569.9 362.7 569.0C370.0 568.2 372.4 567.2 401.8 552.6C437.9 534.6 440.9 532.4 448.2 518.7C452.5 510.5 452.5 510.5 452.8 490.0C453.1 465.1 452.9 464.3 443.2 459.3C435.7 455.4 429.7 455.0 423.3 458.0C421.0 459.0 416.4 460.6 413.1 461.4C409.8 462.2 403.1 464.9 398.3 467.3C393.5 469.8 386.8 472.5 383.5 473.3C380.2 474.2 372.8 477.1 367.1 479.9C361.3 482.7 355.8 485.0 354.8 485.0C353.7 485.0 350.0 486.1 346.5 487.5C343.0 488.9 337.7 490.7 334.6 491.5C331.5 492.3 325.1 494.9 320.3 497.4C315.4 499.8 308.8 502.5 305.5 503.3C302.2 504.2 294.8 507.1 289.1 509.9C283.3 512.7 277.8 515.0 276.8 515.0C275.7 515.0 271.4 516.3 267.2 517.9C263.0 519.5 257.2 521.5 254.5 522.3C251.8 523.2 247.5 524.6 245.0 525.5C238.2 528.0 219.3 527.2 212.6 524.0C209.8 522.8 204.4 521.4 200.4 520.9C194.9 520.3 191.1 519.1 184.1 515.5C179.0 513.0 172.1 510.2 168.7 509.3C165.3 508.5 158.5 505.8 153.7 503.3C148.9 500.9 142.2 498.2 138.8 497.4C135.5 496.5 125.5 492.2 116.6 487.8C102.5 480.9 99.4 479.7 92.8 479.0C86.2 478.2 83.2 477.1 70.0 470.5C61.7 466.3 52.2 462.2 48.9 461.4C45.6 460.6 41.0 459.0 38.7 458.0C29.7 453.9 23.3 455.6 15.2 464.5C8.5 471.8 5.4 479.7 7.0 485.5C7.6 487.7 8.5 495.6 8.9 503.0C9.6 516.0 9.8 516.8 13.4 523.9C20.4 537.5 31.9 546.7 47.1 550.6C50.6 551.5 60.2 555.6 68.3 559.7C76.5 563.7 85.9 567.8 89.3 568.7C92.7 569.5 99.5 572.2 104.3 574.7C109.1 577.1 115.9 579.8 119.3 580.7C122.7 581.5 132.2 585.6 140.3 589.7C148.5 593.7 157.8 597.8 161.2 598.6C164.5 599.5 174.5 603.8 183.4 608.2C197.3 615.0 200.7 616.3 207.1 617.1C211.2 617.5 217.2 619.1 220.5 620.4C225.1 622.4 228.2 623.0 234.0 623.0C239.8 623.0 242.9 622.4 247.5 620.4ZM272.2 455.3C278.1 452.5 285.6 449.5 288.9 448.6C292.2 447.8 298.9 445.1 303.7 442.7C308.5 440.2 315.2 437.5 318.5 436.7C321.8 435.8 329.2 432.9 334.9 430.1C340.7 427.3 346.2 425.0 347.2 425.0C350.2 425.0 355.3 422.5 361.0 418.2C363.9 416.0 367.9 413.9 369.9 413.5C371.9 413.1 376.9 411.6 381.0 410.1C392.2 405.9 400.7 403.1 408.3 400.9C417.9 398.2 426.4 393.6 432.3 388.2C439.5 381.5 441.0 377.6 441.0 365.6C441.0 360.2 441.7 353.2 442.5 350.0C444.5 342.4 441.6 330.1 434.7 316.3C432.1 311.3 429.6 305.2 428.9 302.7C427.0 295.0 424.5 293.5 413.6 293.5C404.6 293.5 404.2 293.6 393.8 298.7C387.9 301.5 380.5 304.5 377.3 305.4C374.0 306.2 364.0 310.5 355.1 314.9C346.1 319.4 337.9 323.0 336.8 323.0C335.7 323.0 332.1 324.1 328.7 325.4C325.3 326.8 320.2 328.4 317.5 329.1C314.8 329.8 302.7 335.2 290.6 341.2C271.3 350.9 267.9 352.2 261.6 352.9C257.7 353.4 252.0 354.8 249.0 356.1C240.5 359.8 221.3 359.6 211.8 355.8C208.2 354.2 204.3 353.0 203.2 353.0C202.2 353.0 196.7 350.7 190.9 347.9C185.2 345.1 177.8 342.2 174.5 341.3C171.2 340.5 161.8 336.4 153.7 332.3C145.5 328.3 136.1 324.2 132.7 323.3C129.3 322.5 119.8 318.4 111.7 314.3C103.5 310.3 94.1 306.2 90.7 305.3C87.3 304.5 79.3 301.2 73.0 298.0C56.5 289.8 54.8 289.3 47.8 292.0C37.8 295.7 27.1 307.4 27.0 314.6C27.0 315.8 24.4 321.8 21.2 328.1C15.5 339.5 15.5 339.5 15.5 356.0C15.5 372.5 15.5 372.5 18.9 378.8C23.1 386.5 25.4 388.3 39.2 395.0C47.7 399.2 51.3 400.4 57.4 401.1C63.6 401.7 65.8 402.5 69.6 405.2C77.9 411.1 79.4 411.9 84.2 413.0C86.8 413.5 93.1 416.0 98.0 418.5C103.0 421.0 109.9 423.8 113.3 424.7C116.7 425.5 123.5 428.2 128.3 430.7C133.1 433.1 139.9 435.8 143.3 436.7C146.7 437.5 153.5 440.2 158.3 442.7C163.1 445.1 169.9 447.8 173.3 448.7C176.7 449.5 183.1 452.0 187.5 454.3C201.2 461.2 199.6 460.9 232.0 460.7C261.6 460.5 261.6 460.5 272.2 455.3ZM247.5 338.4C250.8 337.1 256.7 335.6 260.6 335.1C268.4 334.2 269.9 333.5 277.2 328.0C280.0 325.9 283.9 323.9 285.9 323.5C287.9 323.1 292.2 321.8 295.5 320.5C298.8 319.2 303.8 317.6 306.5 316.9C309.2 316.2 321.2 310.9 333.0 305.0C344.8 299.1 357.3 293.5 360.7 292.7C364.1 291.8 370.9 289.1 375.7 286.7C380.5 284.2 387.1 281.5 390.2 280.6C396.2 278.9 397.8 277.3 402.0 269.1C405.4 262.4 405.0 256.9 400.5 248.0C396.2 239.4 385.5 227.7 377.3 222.4C374.1 220.3 370.5 216.7 368.1 213.2C358.5 199.2 354.1 197.0 336.0 197.0C324.3 197.0 322.2 197.3 316.5 199.5C313.0 200.9 307.8 202.7 304.8 203.5C301.8 204.2 294.7 207.2 289.0 209.9C283.3 212.7 277.7 215.0 276.6 215.0C275.4 215.0 271.8 216.2 268.5 217.6C265.2 218.9 259.3 220.4 255.4 220.9C251.6 221.4 246.2 222.8 243.4 224.0C236.7 227.2 217.8 228.0 211.0 225.5C208.5 224.6 204.2 223.2 201.5 222.3C198.8 221.5 193.0 219.5 188.8 217.9C184.6 216.3 180.3 215.0 179.3 215.0C178.3 215.0 169.4 211.1 159.6 206.3C141.6 197.5 141.6 197.5 128.1 197.2C108.3 196.7 109.9 195.8 86.6 218.8C64.2 241.1 63.0 242.8 63.0 254.0C63.0 269.0 68.3 274.7 95.0 288.0C105.0 293.0 115.9 297.8 119.3 298.7C122.7 299.5 132.2 303.6 140.3 307.7C148.5 311.7 157.9 315.8 161.3 316.7C164.7 317.5 174.2 321.6 182.3 325.7C190.5 329.7 199.7 333.7 202.8 334.5C205.9 335.3 211.2 337.1 214.5 338.5C223.2 342.1 238.8 342.1 247.5 338.4ZM254.8 182.1C259.0 180.5 264.5 178.7 267.0 178.0C272.9 176.4 287.2 162.8 289.6 156.4C291.9 150.3 291.2 137.1 288.2 131.3C287.0 129.0 285.5 124.7 284.9 121.8C284.3 118.9 282.9 114.8 281.9 112.8C280.8 110.7 279.5 106.7 278.9 103.8C278.3 100.9 276.9 96.8 275.9 94.8C274.8 92.7 273.5 88.7 272.9 85.8C272.3 82.9 270.9 78.8 269.9 76.8C268.8 74.7 267.5 70.7 266.9 67.8C266.3 64.9 264.9 60.9 263.9 58.8C262.9 56.8 261.6 53.0 261.0 50.3C260.4 47.7 258.9 43.0 257.6 40.0C256.3 37.0 254.9 32.7 254.5 30.5C253.6 24.4 246.0 10.9 242.1 8.3C232.3 1.7 222.7 9.0 219.1 25.8C218.5 28.7 217.2 32.7 216.1 34.8C215.1 36.8 213.7 40.9 213.1 43.8C212.5 46.7 211.2 50.7 210.1 52.8C209.1 54.8 207.7 58.9 207.1 61.8C206.5 64.7 205.2 68.7 204.1 70.8C203.1 72.8 201.7 76.9 201.1 79.8C200.5 82.7 199.2 86.7 198.1 88.8C197.1 90.8 195.7 94.9 195.1 97.8C194.5 100.7 193.2 104.7 192.1 106.8C191.1 108.8 189.7 112.9 189.1 115.8C188.5 118.7 187.2 122.7 186.1 124.8C185.1 126.8 183.7 130.9 183.1 133.8C182.5 136.7 181.1 140.9 179.9 143.2C177.1 148.7 177.1 155.4 180.0 161.1C184.2 169.3 185.8 170.9 191.8 172.6C194.9 173.5 201.1 176.1 205.5 178.3C218.0 184.5 219.3 184.9 233.8 184.9C246.1 185.0 247.7 184.8 254.8 182.1ZM157.8 146.0C162.0 143.4 164.9 137.0 165.0 130.4C165.0 126.3 166.0 123.2 170.4 114.3C173.3 108.3 176.3 101.0 176.9 98.2C177.5 95.3 179.0 91.0 180.2 88.7C182.0 85.4 182.5 82.8 182.5 77.0C182.5 69.7 182.3 69.1 176.1 57.1C171.0 47.3 168.9 44.3 165.8 42.1C163.7 40.7 159.4 37.5 156.2 35.2C153.1 32.8 145.2 28.2 138.8 24.9C123.5 17.2 120.9 17.1 113.9 23.7C105.3 31.8 103.6 38.4 108.1 47.1C109.4 49.8 110.6 54.5 111.1 59.1C111.5 63.7 112.7 68.5 114.1 71.1C115.4 73.8 116.6 78.5 117.1 83.1C117.5 87.5 118.7 92.5 119.9 94.9C121.1 97.1 122.5 101.3 123.1 104.1C123.7 107.0 125.3 111.6 126.6 114.4C128.1 117.5 129.0 121.4 129.0 124.3C129.0 140.0 146.3 153.0 157.8 146.0ZM328.4 141.7C332.6 138.5 343.2 118.2 344.9 110.2C345.5 107.3 346.9 103.1 348.1 100.9C349.3 98.5 350.5 93.5 350.9 89.1C351.4 84.5 352.6 79.8 353.9 77.1C355.3 74.5 356.5 69.7 356.9 65.1C357.4 60.4 358.6 55.8 360.0 53.0C363.2 46.8 364.0 33.9 361.5 27.5C358.4 19.1 352.5 17.1 342.5 20.9C339.8 22.0 335.6 23.3 333.4 23.9C331.1 24.5 327.1 26.7 324.4 28.8C321.7 31.0 317.1 33.9 314.2 35.5C308.0 38.8 300.1 46.9 297.0 53.1C295.7 55.5 293.2 59.3 291.4 61.5C286.5 67.6 285.7 70.2 287.6 75.3C288.5 77.6 290.0 82.4 290.9 86.0C291.9 89.6 293.4 93.9 294.3 95.7C295.3 97.5 296.5 101.2 297.1 104.1C297.7 107.0 299.3 111.6 300.6 114.4C302.1 117.6 303.0 121.4 303.0 124.5C303.1 131.0 305.7 136.6 311.0 141.4C316.2 146.1 322.4 146.2 328.4 141.7Z"/></svg><span>MINI CHIC</span></div>
+
+<header id="topo">
+  <div class="wrap">
+    <a class="marca" href="#hero" aria-label="Mini Chic, início"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 736"><path fill="#A8784F" d="M253.5 728.4C257.9 726.5 262.2 725.6 269.5 725.1C276.2 724.6 281.1 723.7 284.2 722.2C286.8 721.1 291.7 719.4 295.0 718.6C302.5 716.7 310.9 712.4 318.2 706.8C321.3 704.5 326.1 701.3 328.8 699.8C332.4 697.8 335.1 695.3 338.0 691.0C340.3 687.6 344.0 683.8 346.3 682.3C348.6 680.9 354.6 675.8 359.7 670.9C364.8 666.1 371.6 660.7 374.9 659.0C382.0 655.2 389.8 647.3 393.3 640.4C394.7 637.7 398.8 632.2 402.4 628.2C410.3 619.5 421.3 598.9 421.3 592.9C421.3 588.6 414.8 575.8 411.2 573.0C406.2 569.0 403.0 570.0 374.2 584.4C359.5 591.7 344.7 598.5 341.3 599.3C337.8 600.2 320.8 608.1 302.0 617.5C271.6 632.7 268.2 634.2 261.6 634.9C257.7 635.4 252.0 636.8 249.0 638.1C244.2 640.2 242.0 640.5 231.0 640.5C220.0 640.5 217.8 640.2 213.0 638.1C210.0 636.8 204.3 635.4 200.4 634.9C194.1 634.2 190.7 632.9 172.0 623.5C160.4 617.7 148.1 612.2 144.7 611.3C141.3 610.5 129.1 605.1 117.7 599.3C106.2 593.6 94.1 588.2 90.8 587.4C87.5 586.5 78.9 582.9 71.7 579.4C55.9 571.6 52.9 571.3 46.9 576.7C37.7 585.1 37.5 590.0 46.0 607.1C49.4 613.9 54.1 622.0 56.5 625.0C58.8 628.0 61.7 632.5 63.0 635.0C64.3 637.5 70.5 644.9 77.0 651.5C83.4 658.1 90.2 666.0 92.2 669.1C94.5 672.8 97.5 675.8 100.8 677.8C103.5 679.5 110.3 685.1 115.7 690.2C125.2 699.1 126.4 699.9 144.8 708.9C164.0 718.4 164.0 718.4 174.3 719.1C181.7 719.6 185.9 720.4 189.5 722.1C193.0 723.7 197.4 724.6 204.5 725.1C211.8 725.6 216.1 726.5 220.5 728.4C225.7 730.6 228.0 731.0 237.0 731.0C246.0 731.0 248.3 730.6 253.5 728.4ZM247.5 620.4C250.8 619.1 256.8 617.5 260.8 617.1C269.3 616.1 279.5 611.5 288.4 604.7C292.3 601.7 296.0 599.9 299.7 599.0C305.8 597.7 340.8 580.7 345.5 576.8C352.8 570.9 354.9 569.9 362.7 569.0C370.0 568.2 372.4 567.2 401.8 552.6C437.9 534.6 440.9 532.4 448.2 518.7C452.5 510.5 452.5 510.5 452.8 490.0C453.1 465.1 452.9 464.3 443.2 459.3C435.7 455.4 429.7 455.0 423.3 458.0C421.0 459.0 416.4 460.6 413.1 461.4C409.8 462.2 403.1 464.9 398.3 467.3C393.5 469.8 386.8 472.5 383.5 473.3C380.2 474.2 372.8 477.1 367.1 479.9C361.3 482.7 355.8 485.0 354.8 485.0C353.7 485.0 350.0 486.1 346.5 487.5C343.0 488.9 337.7 490.7 334.6 491.5C331.5 492.3 325.1 494.9 320.3 497.4C315.4 499.8 308.8 502.5 305.5 503.3C302.2 504.2 294.8 507.1 289.1 509.9C283.3 512.7 277.8 515.0 276.8 515.0C275.7 515.0 271.4 516.3 267.2 517.9C263.0 519.5 257.2 521.5 254.5 522.3C251.8 523.2 247.5 524.6 245.0 525.5C238.2 528.0 219.3 527.2 212.6 524.0C209.8 522.8 204.4 521.4 200.4 520.9C194.9 520.3 191.1 519.1 184.1 515.5C179.0 513.0 172.1 510.2 168.7 509.3C165.3 508.5 158.5 505.8 153.7 503.3C148.9 500.9 142.2 498.2 138.8 497.4C135.5 496.5 125.5 492.2 116.6 487.8C102.5 480.9 99.4 479.7 92.8 479.0C86.2 478.2 83.2 477.1 70.0 470.5C61.7 466.3 52.2 462.2 48.9 461.4C45.6 460.6 41.0 459.0 38.7 458.0C29.7 453.9 23.3 455.6 15.2 464.5C8.5 471.8 5.4 479.7 7.0 485.5C7.6 487.7 8.5 495.6 8.9 503.0C9.6 516.0 9.8 516.8 13.4 523.9C20.4 537.5 31.9 546.7 47.1 550.6C50.6 551.5 60.2 555.6 68.3 559.7C76.5 563.7 85.9 567.8 89.3 568.7C92.7 569.5 99.5 572.2 104.3 574.7C109.1 577.1 115.9 579.8 119.3 580.7C122.7 581.5 132.2 585.6 140.3 589.7C148.5 593.7 157.8 597.8 161.2 598.6C164.5 599.5 174.5 603.8 183.4 608.2C197.3 615.0 200.7 616.3 207.1 617.1C211.2 617.5 217.2 619.1 220.5 620.4C225.1 622.4 228.2 623.0 234.0 623.0C239.8 623.0 242.9 622.4 247.5 620.4ZM272.2 455.3C278.1 452.5 285.6 449.5 288.9 448.6C292.2 447.8 298.9 445.1 303.7 442.7C308.5 440.2 315.2 437.5 318.5 436.7C321.8 435.8 329.2 432.9 334.9 430.1C340.7 427.3 346.2 425.0 347.2 425.0C350.2 425.0 355.3 422.5 361.0 418.2C363.9 416.0 367.9 413.9 369.9 413.5C371.9 413.1 376.9 411.6 381.0 410.1C392.2 405.9 400.7 403.1 408.3 400.9C417.9 398.2 426.4 393.6 432.3 388.2C439.5 381.5 441.0 377.6 441.0 365.6C441.0 360.2 441.7 353.2 442.5 350.0C444.5 342.4 441.6 330.1 434.7 316.3C432.1 311.3 429.6 305.2 428.9 302.7C427.0 295.0 424.5 293.5 413.6 293.5C404.6 293.5 404.2 293.6 393.8 298.7C387.9 301.5 380.5 304.5 377.3 305.4C374.0 306.2 364.0 310.5 355.1 314.9C346.1 319.4 337.9 323.0 336.8 323.0C335.7 323.0 332.1 324.1 328.7 325.4C325.3 326.8 320.2 328.4 317.5 329.1C314.8 329.8 302.7 335.2 290.6 341.2C271.3 350.9 267.9 352.2 261.6 352.9C257.7 353.4 252.0 354.8 249.0 356.1C240.5 359.8 221.3 359.6 211.8 355.8C208.2 354.2 204.3 353.0 203.2 353.0C202.2 353.0 196.7 350.7 190.9 347.9C185.2 345.1 177.8 342.2 174.5 341.3C171.2 340.5 161.8 336.4 153.7 332.3C145.5 328.3 136.1 324.2 132.7 323.3C129.3 322.5 119.8 318.4 111.7 314.3C103.5 310.3 94.1 306.2 90.7 305.3C87.3 304.5 79.3 301.2 73.0 298.0C56.5 289.8 54.8 289.3 47.8 292.0C37.8 295.7 27.1 307.4 27.0 314.6C27.0 315.8 24.4 321.8 21.2 328.1C15.5 339.5 15.5 339.5 15.5 356.0C15.5 372.5 15.5 372.5 18.9 378.8C23.1 386.5 25.4 388.3 39.2 395.0C47.7 399.2 51.3 400.4 57.4 401.1C63.6 401.7 65.8 402.5 69.6 405.2C77.9 411.1 79.4 411.9 84.2 413.0C86.8 413.5 93.1 416.0 98.0 418.5C103.0 421.0 109.9 423.8 113.3 424.7C116.7 425.5 123.5 428.2 128.3 430.7C133.1 433.1 139.9 435.8 143.3 436.7C146.7 437.5 153.5 440.2 158.3 442.7C163.1 445.1 169.9 447.8 173.3 448.7C176.7 449.5 183.1 452.0 187.5 454.3C201.2 461.2 199.6 460.9 232.0 460.7C261.6 460.5 261.6 460.5 272.2 455.3ZM247.5 338.4C250.8 337.1 256.7 335.6 260.6 335.1C268.4 334.2 269.9 333.5 277.2 328.0C280.0 325.9 283.9 323.9 285.9 323.5C287.9 323.1 292.2 321.8 295.5 320.5C298.8 319.2 303.8 317.6 306.5 316.9C309.2 316.2 321.2 310.9 333.0 305.0C344.8 299.1 357.3 293.5 360.7 292.7C364.1 291.8 370.9 289.1 375.7 286.7C380.5 284.2 387.1 281.5 390.2 280.6C396.2 278.9 397.8 277.3 402.0 269.1C405.4 262.4 405.0 256.9 400.5 248.0C396.2 239.4 385.5 227.7 377.3 222.4C374.1 220.3 370.5 216.7 368.1 213.2C358.5 199.2 354.1 197.0 336.0 197.0C324.3 197.0 322.2 197.3 316.5 199.5C313.0 200.9 307.8 202.7 304.8 203.5C301.8 204.2 294.7 207.2 289.0 209.9C283.3 212.7 277.7 215.0 276.6 215.0C275.4 215.0 271.8 216.2 268.5 217.6C265.2 218.9 259.3 220.4 255.4 220.9C251.6 221.4 246.2 222.8 243.4 224.0C236.7 227.2 217.8 228.0 211.0 225.5C208.5 224.6 204.2 223.2 201.5 222.3C198.8 221.5 193.0 219.5 188.8 217.9C184.6 216.3 180.3 215.0 179.3 215.0C178.3 215.0 169.4 211.1 159.6 206.3C141.6 197.5 141.6 197.5 128.1 197.2C108.3 196.7 109.9 195.8 86.6 218.8C64.2 241.1 63.0 242.8 63.0 254.0C63.0 269.0 68.3 274.7 95.0 288.0C105.0 293.0 115.9 297.8 119.3 298.7C122.7 299.5 132.2 303.6 140.3 307.7C148.5 311.7 157.9 315.8 161.3 316.7C164.7 317.5 174.2 321.6 182.3 325.7C190.5 329.7 199.7 333.7 202.8 334.5C205.9 335.3 211.2 337.1 214.5 338.5C223.2 342.1 238.8 342.1 247.5 338.4ZM254.8 182.1C259.0 180.5 264.5 178.7 267.0 178.0C272.9 176.4 287.2 162.8 289.6 156.4C291.9 150.3 291.2 137.1 288.2 131.3C287.0 129.0 285.5 124.7 284.9 121.8C284.3 118.9 282.9 114.8 281.9 112.8C280.8 110.7 279.5 106.7 278.9 103.8C278.3 100.9 276.9 96.8 275.9 94.8C274.8 92.7 273.5 88.7 272.9 85.8C272.3 82.9 270.9 78.8 269.9 76.8C268.8 74.7 267.5 70.7 266.9 67.8C266.3 64.9 264.9 60.9 263.9 58.8C262.9 56.8 261.6 53.0 261.0 50.3C260.4 47.7 258.9 43.0 257.6 40.0C256.3 37.0 254.9 32.7 254.5 30.5C253.6 24.4 246.0 10.9 242.1 8.3C232.3 1.7 222.7 9.0 219.1 25.8C218.5 28.7 217.2 32.7 216.1 34.8C215.1 36.8 213.7 40.9 213.1 43.8C212.5 46.7 211.2 50.7 210.1 52.8C209.1 54.8 207.7 58.9 207.1 61.8C206.5 64.7 205.2 68.7 204.1 70.8C203.1 72.8 201.7 76.9 201.1 79.8C200.5 82.7 199.2 86.7 198.1 88.8C197.1 90.8 195.7 94.9 195.1 97.8C194.5 100.7 193.2 104.7 192.1 106.8C191.1 108.8 189.7 112.9 189.1 115.8C188.5 118.7 187.2 122.7 186.1 124.8C185.1 126.8 183.7 130.9 183.1 133.8C182.5 136.7 181.1 140.9 179.9 143.2C177.1 148.7 177.1 155.4 180.0 161.1C184.2 169.3 185.8 170.9 191.8 172.6C194.9 173.5 201.1 176.1 205.5 178.3C218.0 184.5 219.3 184.9 233.8 184.9C246.1 185.0 247.7 184.8 254.8 182.1ZM157.8 146.0C162.0 143.4 164.9 137.0 165.0 130.4C165.0 126.3 166.0 123.2 170.4 114.3C173.3 108.3 176.3 101.0 176.9 98.2C177.5 95.3 179.0 91.0 180.2 88.7C182.0 85.4 182.5 82.8 182.5 77.0C182.5 69.7 182.3 69.1 176.1 57.1C171.0 47.3 168.9 44.3 165.8 42.1C163.7 40.7 159.4 37.5 156.2 35.2C153.1 32.8 145.2 28.2 138.8 24.9C123.5 17.2 120.9 17.1 113.9 23.7C105.3 31.8 103.6 38.4 108.1 47.1C109.4 49.8 110.6 54.5 111.1 59.1C111.5 63.7 112.7 68.5 114.1 71.1C115.4 73.8 116.6 78.5 117.1 83.1C117.5 87.5 118.7 92.5 119.9 94.9C121.1 97.1 122.5 101.3 123.1 104.1C123.7 107.0 125.3 111.6 126.6 114.4C128.1 117.5 129.0 121.4 129.0 124.3C129.0 140.0 146.3 153.0 157.8 146.0ZM328.4 141.7C332.6 138.5 343.2 118.2 344.9 110.2C345.5 107.3 346.9 103.1 348.1 100.9C349.3 98.5 350.5 93.5 350.9 89.1C351.4 84.5 352.6 79.8 353.9 77.1C355.3 74.5 356.5 69.7 356.9 65.1C357.4 60.4 358.6 55.8 360.0 53.0C363.2 46.8 364.0 33.9 361.5 27.5C358.4 19.1 352.5 17.1 342.5 20.9C339.8 22.0 335.6 23.3 333.4 23.9C331.1 24.5 327.1 26.7 324.4 28.8C321.7 31.0 317.1 33.9 314.2 35.5C308.0 38.8 300.1 46.9 297.0 53.1C295.7 55.5 293.2 59.3 291.4 61.5C286.5 67.6 285.7 70.2 287.6 75.3C288.5 77.6 290.0 82.4 290.9 86.0C291.9 89.6 293.4 93.9 294.3 95.7C295.3 97.5 296.5 101.2 297.1 104.1C297.7 107.0 299.3 111.6 300.6 114.4C302.1 117.6 303.0 121.4 303.0 124.5C303.1 131.0 305.7 136.6 311.0 141.4C316.2 146.1 322.4 146.2 328.4 141.7Z"/></svg><span><b style="font-weight:500">MINI</b><b style="font-weight:500">CHIC</b></span></a>
+    <nav aria-label="Seções">
+      <a class="lk" href="#passarela">Coleção</a>
+      <a class="lk" href="#lancamentos">Lançamentos</a>
+      <a class="lk" href="#loja">A loja</a>
+      <a class="btn btn-cacau" style="min-height:44px;padding:0 20px;font-size:15px" href="https://wa.me/5521992094502?text=Ol%C3%A1!%20Vim%20pelo%20site." >Comprar pelo WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="hero" aria-label="Collab Céu de Areia">
+    <div class="fixo">
+      <canvas id="heroGL" aria-label="Três modelos com peças da Mini Chic diante de uma parede iluminada por sol entre folhas"></canvas>
+      <div class="hero-txt">
+        <div class="wrap">
+          <span class="kicker">Collab Celle Moreira × Mini Chic</span>
+          <h1>Céu de Areia</h1>
+          <p>Tons de areia, coco e céu em peças leves para o calor do Rio. Role para ver a coleção de perto.</p>
+          <div class="ctas">
+            <a class="btn btn-cacau" href="#passarela">Ver a coleção</a>
+            <a class="btn btn-linha" href="#loja">Visitar a loja</a>
+          </div>
+        </div>
+      </div>
+      <div class="rolar" aria-hidden="true">role<i></i></div>
+    </div>
+  </section>
+
+  <section id="passarela" aria-labelledby="t-pass" style="height:505vh">
+    <div class="fixo">
+      <canvas id="passGL" aria-hidden="true"></canvas>
+      <div class="pass-titulo"><div class="wrap"><h2 id="t-pass">A coleção, peça por peça</h2><p>Role para girar a passarela. Cada peça para na sua frente.</p></div></div>
+      <div id="pCap" aria-live="polite">
+        <span id="pNum" class="anima">01 de 09</span>
+        <h3 id="pNome" class="anima">—</h3>
+        <div class="precos anima"><span id="pPreco"></span><span id="pPix"></span><span id="pParc"></span></div>
+        <div class="pass-nav">
+          <button class="circ" id="pAnt" aria-label="Peça anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="circ" id="pProx" aria-label="Próxima peça"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg></button>
+          <a class="btn btn-claro" id="pZap" href="#">Quero esta peça</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="historia" aria-labelledby="t-hist">
+    <div class="wrap">
+      <div class="colagem" aria-hidden="true">
+        <figure class="f1"><img data-vel="0.35" src="img/p-barrel.webp" alt=""></figure>
+        <figure class="f2"><img data-vel="-0.25" src="img/p-aguacoco-blusa.webp" alt=""></figure>
+      </div>
+      <div>
+        <h2 id="t-hist">Uma coleção com cara de orla</h2>
+        <p>Os nomes já contam a história. São calças amplas, blusas tomara que caia, batas e vestidos longos em tons de praia, fotografados à beira-mar no Rio, numa parceria da Mini Chic com Celle Moreira.</p>
+        <ul class="nomes"><li>Areia</li><li>Água de Coco</li><li>Maré</li><li>Céu</li><li>Duna</li><li>Guatemala</li></ul>
+        <a class="btn btn-cacau" href="#todas">Ver todas as peças</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lanc" id="lancamentos" aria-labelledby="t-lanc">
+    <div class="wrap">
+      <div class="cab"><h2 id="t-lanc">Acabou de chegar</h2><p>Lançamentos na loja e no site. Passe o mouse ou o dedo nas fotos.</p></div>
+      <div class="arcos"><article class="arco3d revela">
+  <div class="arco-in">
+    <div class="arco-foto"><img src="img/p-teodora.webp" alt="Calça Flare Teodora" loading="lazy"></div>
+    <div class="arco-recorte" style="left:29.14%;top:8.87%;width:41.34%;height:86.09%"><img src="img/c-teodora.webp" alt=""></div>
+  </div>
+  <div class="arco-txt"><h3>Calça Flare Teodora</h3>
+    <div class="precos"><span>R$ 189,00</span><span class="pix">R$ 179,55 no Pix</span><span class="parc">ou 4x de R$ 47,25 sem juros</span></div>
+    <a href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Cal%C3%A7a%20Flare%20Teodora.">Pedir pelo WhatsApp</a></div>
+</article>
+<article class="arco3d revela">
+  <div class="arco-in">
+    <div class="arco-foto"><img src="img/p-hada.webp" alt="Body Hada" loading="lazy"></div>
+    <div class="arco-recorte" style="left:36.97%;top:13.91%;width:35.94%;height:83.71%"><img src="img/c-hada.webp" alt=""></div>
+  </div>
+  <div class="arco-txt"><h3>Body Hada</h3>
+    <div class="precos"><span>R$ 89,00</span><span class="pix">R$ 84,55 no Pix</span><span class="parc">ou 2x de R$ 44,50 sem juros</span></div>
+    <a href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Body%20Hada.">Pedir pelo WhatsApp</a></div>
+</article>
+<article class="arco3d revela">
+  <div class="arco-in">
+    <div class="arco-foto"><img src="img/p-lily.webp" alt="Blusa Lily Amarração" loading="lazy"></div>
+    <div class="arco-recorte" style="left:9.50%;top:1.01%;width:90.50%;height:98.99%"><img src="img/c-lily.webp" alt=""></div>
+  </div>
+  <div class="arco-txt"><h3>Blusa Lily Amarração</h3>
+    <div class="precos"><span>R$ 79,00</span><span class="pix">R$ 75,05 no Pix</span></div>
+    <a href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Blusa%20Lily%20Amarra%C3%A7%C3%A3o.">Pedir pelo WhatsApp</a></div>
+</article></div>
+    </div>
+  </section>
+
+  <section class="grade-sec" id="todas" aria-labelledby="t-todas">
+    <div class="wrap">
+      <div class="cab"><h2 id="t-todas">Todas as peças</h2><p>No Pix sai 5% mais barato. No cartão, parcele sem juros.</p></div>
+      <div class="grade"><a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Vestido%20Duna%20Pacific.">
+  <div class="ft"><img src="img/p-duna-pacific.webp" alt="Vestido Duna Pacific" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Vestido Duna Pacific</h3>
+  <span class="pr"><b>R$ 179,00</b> <span>· R$ 170,05 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Vestido%20Longo%20Guatemala.">
+  <div class="ft"><img src="img/p-guatemala.webp" alt="Vestido Longo Guatemala" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Vestido Longo Guatemala</h3>
+  <span class="pr"><b>R$ 179,00</b> <span>· R$ 170,05 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Cal%C3%A7a%20Areia%20Barrel.">
+  <div class="ft"><img src="img/p-barrel.webp" alt="Calça Areia Barrel" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Calça Areia Barrel</h3>
+  <span class="pr"><b>R$ 149,00</b> <span>· R$ 141,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Camisa%20Areia%20Oversize.">
+  <div class="ft"><img src="img/p-areia-oversize.webp" alt="Camisa Areia Oversize" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Camisa Areia Oversize</h3>
+  <span class="pr"><b>R$ 149,00</b> <span>· R$ 141,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Cal%C3%A7a%20Areia%20Reta.">
+  <div class="ft"><img src="img/p-areia-reta.webp" alt="Calça Areia Reta" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Calça Areia Reta</h3>
+  <span class="pr"><b>R$ 149,00</b> <span>· R$ 141,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Blusa%20C%C3%A9u%20Rustic.">
+  <div class="ft"><img src="img/p-ceu-rustic.webp" alt="Blusa Céu Rustic" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Blusa Céu Rustic</h3>
+  <span class="pr"><b>R$ 109,00</b> <span>· R$ 103,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Bata%20Mar%C3%A9%20Andes.">
+  <div class="ft"><img src="img/p-mare-andes.webp" alt="Bata Maré Andes" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Bata Maré Andes</h3>
+  <span class="pr"><b>R$ 99,00</b> <span>· R$ 94,05 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Blusa%20%C3%81gua%20de%20Coco.">
+  <div class="ft"><img src="img/p-aguacoco-blusa.webp" alt="Blusa Água de Coco" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Blusa Água de Coco</h3>
+  <span class="pr"><b>R$ 89,00</b> <span>· R$ 84,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Short%20%C3%81gua%20de%20Coco.">
+  <div class="ft"><img src="img/p-aguacoco-short.webp" alt="Short Água de Coco" loading="lazy"></div>
+  <span class="tag">Collab Céu de Areia</span>
+  <h3>Short Água de Coco</h3>
+  <span class="pr"><b>R$ 89,00</b> <span>· R$ 84,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Cal%C3%A7a%20Flare%20Teodora.">
+  <div class="ft"><img src="img/p-teodora.webp" alt="Calça Flare Teodora" loading="lazy"></div>
+  <span class="tag">Lançamento</span>
+  <h3>Calça Flare Teodora</h3>
+  <span class="pr"><b>R$ 189,00</b> <span>· R$ 179,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Body%20Hada.">
+  <div class="ft"><img src="img/p-hada.webp" alt="Body Hada" loading="lazy"></div>
+  <span class="tag">Lançamento</span>
+  <h3>Body Hada</h3>
+  <span class="pr"><b>R$ 89,00</b> <span>· R$ 84,55 no Pix</span></span>
+</a>
+<a class="item" href="https://wa.me/5521992094502?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20a%20Blusa%20Lily%20Amarra%C3%A7%C3%A3o.">
+  <div class="ft"><img src="img/p-lily.webp" alt="Blusa Lily Amarração" loading="lazy"></div>
+  <span class="tag">Lançamento</span>
+  <h3>Blusa Lily Amarração</h3>
+  <span class="pr"><b>R$ 79,00</b> <span>· R$ 75,05 no Pix</span></span>
+</a></div>
+    </div>
+  </section>
+
+  <section class="loja" id="loja" aria-labelledby="t-loja">
+    <div class="wrap">
+      <div>
+        <h2 id="t-loja">Venha provar na loja</h2>
+        <p>Estamos no Smart Shopping Campo Grande, loja 111, com atendimento personalizado para montar o look com você.</p>
+        <ul class="horas">
+          <li><span>Segunda a sexta</span><span>9h às 20h</span></li>
+          <li><span>Sábado</span><span>9h às 18h</span></li>
+          <li><span>Domingo</span><span>Fechado</span></li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-claro" href="https://www.google.com/maps/search/?api=1&amp;query=Smart+Shopping+Campo+Grande+Rio+de+Janeiro">Como chegar</a>
+          <a class="btn btn-linha" href="https://wa.me/5521992094502">(21) 99209-4502</a>
+        </div>
+        <p style="margin-top:22px;font-size:15px"><a href="https://www.instagram.com/minichiccampogrande/">@minichiccampogrande</a> no Instagram</p>
+      </div>
+      <figure class="cena-loja">
+        <div class="moldura"><img data-vel="-0.18" src="img/s-vitrine-cine.webp" alt="Vitrine da Mini Chic no Smart Shopping Campo Grande, com manequins diante de cortinas bege"></div>
+        <figcaption>Vitrine da loja 111, Smart Shopping Campo Grande</figcaption>
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="pagar" aria-label="Formas de pagamento">
+    <div class="wrap">
+      <div><strong>5% off no Pix</strong><span>O desconto já aparece no preço de cada peça.</span></div>
+      <div><strong>Até 4x sem juros</strong><span>Visa, Mastercard, Elo, Hipercard, Diners e American Express.</span></div>
+      <div><strong>Loja online protegida</strong><span>Compre também em <a href="https://www.useminichic.com.br/">useminichic.com.br</a>, com certificado SSL.</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#hero" aria-label="Mini Chic"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 736"><path fill="#A8784F" d="M253.5 728.4C257.9 726.5 262.2 725.6 269.5 725.1C276.2 724.6 281.1 723.7 284.2 722.2C286.8 721.1 291.7 719.4 295.0 718.6C302.5 716.7 310.9 712.4 318.2 706.8C321.3 704.5 326.1 701.3 328.8 699.8C332.4 697.8 335.1 695.3 338.0 691.0C340.3 687.6 344.0 683.8 346.3 682.3C348.6 680.9 354.6 675.8 359.7 670.9C364.8 666.1 371.6 660.7 374.9 659.0C382.0 655.2 389.8 647.3 393.3 640.4C394.7 637.7 398.8 632.2 402.4 628.2C410.3 619.5 421.3 598.9 421.3 592.9C421.3 588.6 414.8 575.8 411.2 573.0C406.2 569.0 403.0 570.0 374.2 584.4C359.5 591.7 344.7 598.5 341.3 599.3C337.8 600.2 320.8 608.1 302.0 617.5C271.6 632.7 268.2 634.2 261.6 634.9C257.7 635.4 252.0 636.8 249.0 638.1C244.2 640.2 242.0 640.5 231.0 640.5C220.0 640.5 217.8 640.2 213.0 638.1C210.0 636.8 204.3 635.4 200.4 634.9C194.1 634.2 190.7 632.9 172.0 623.5C160.4 617.7 148.1 612.2 144.7 611.3C141.3 610.5 129.1 605.1 117.7 599.3C106.2 593.6 94.1 588.2 90.8 587.4C87.5 586.5 78.9 582.9 71.7 579.4C55.9 571.6 52.9 571.3 46.9 576.7C37.7 585.1 37.5 590.0 46.0 607.1C49.4 613.9 54.1 622.0 56.5 625.0C58.8 628.0 61.7 632.5 63.0 635.0C64.3 637.5 70.5 644.9 77.0 651.5C83.4 658.1 90.2 666.0 92.2 669.1C94.5 672.8 97.5 675.8 100.8 677.8C103.5 679.5 110.3 685.1 115.7 690.2C125.2 699.1 126.4 699.9 144.8 708.9C164.0 718.4 164.0 718.4 174.3 719.1C181.7 719.6 185.9 720.4 189.5 722.1C193.0 723.7 197.4 724.6 204.5 725.1C211.8 725.6 216.1 726.5 220.5 728.4C225.7 730.6 228.0 731.0 237.0 731.0C246.0 731.0 248.3 730.6 253.5 728.4ZM247.5 620.4C250.8 619.1 256.8 617.5 260.8 617.1C269.3 616.1 279.5 611.5 288.4 604.7C292.3 601.7 296.0 599.9 299.7 599.0C305.8 597.7 340.8 580.7 345.5 576.8C352.8 570.9 354.9 569.9 362.7 569.0C370.0 568.2 372.4 567.2 401.8 552.6C437.9 534.6 440.9 532.4 448.2 518.7C452.5 510.5 452.5 510.5 452.8 490.0C453.1 465.1 452.9 464.3 443.2 459.3C435.7 455.4 429.7 455.0 423.3 458.0C421.0 459.0 416.4 460.6 413.1 461.4C409.8 462.2 403.1 464.9 398.3 467.3C393.5 469.8 386.8 472.5 383.5 473.3C380.2 474.2 372.8 477.1 367.1 479.9C361.3 482.7 355.8 485.0 354.8 485.0C353.7 485.0 350.0 486.1 346.5 487.5C343.0 488.9 337.7 490.7 334.6 491.5C331.5 492.3 325.1 494.9 320.3 497.4C315.4 499.8 308.8 502.5 305.5 503.3C302.2 504.2 294.8 507.1 289.1 509.9C283.3 512.7 277.8 515.0 276.8 515.0C275.7 515.0 271.4 516.3 267.2 517.9C263.0 519.5 257.2 521.5 254.5 522.3C251.8 523.2 247.5 524.6 245.0 525.5C238.2 528.0 219.3 527.2 212.6 524.0C209.8 522.8 204.4 521.4 200.4 520.9C194.9 520.3 191.1 519.1 184.1 515.5C179.0 513.0 172.1 510.2 168.7 509.3C165.3 508.5 158.5 505.8 153.7 503.3C148.9 500.9 142.2 498.2 138.8 497.4C135.5 496.5 125.5 492.2 116.6 487.8C102.5 480.9 99.4 479.7 92.8 479.0C86.2 478.2 83.2 477.1 70.0 470.5C61.7 466.3 52.2 462.2 48.9 461.4C45.6 460.6 41.0 459.0 38.7 458.0C29.7 453.9 23.3 455.6 15.2 464.5C8.5 471.8 5.4 479.7 7.0 485.5C7.6 487.7 8.5 495.6 8.9 503.0C9.6 516.0 9.8 516.8 13.4 523.9C20.4 537.5 31.9 546.7 47.1 550.6C50.6 551.5 60.2 555.6 68.3 559.7C76.5 563.7 85.9 567.8 89.3 568.7C92.7 569.5 99.5 572.2 104.3 574.7C109.1 577.1 115.9 579.8 119.3 580.7C122.7 581.5 132.2 585.6 140.3 589.7C148.5 593.7 157.8 597.8 161.2 598.6C164.5 599.5 174.5 603.8 183.4 608.2C197.3 615.0 200.7 616.3 207.1 617.1C211.2 617.5 217.2 619.1 220.5 620.4C225.1 622.4 228.2 623.0 234.0 623.0C239.8 623.0 242.9 622.4 247.5 620.4ZM272.2 455.3C278.1 452.5 285.6 449.5 288.9 448.6C292.2 447.8 298.9 445.1 303.7 442.7C308.5 440.2 315.2 437.5 318.5 436.7C321.8 435.8 329.2 432.9 334.9 430.1C340.7 427.3 346.2 425.0 347.2 425.0C350.2 425.0 355.3 422.5 361.0 418.2C363.9 416.0 367.9 413.9 369.9 413.5C371.9 413.1 376.9 411.6 381.0 410.1C392.2 405.9 400.7 403.1 408.3 400.9C417.9 398.2 426.4 393.6 432.3 388.2C439.5 381.5 441.0 377.6 441.0 365.6C441.0 360.2 441.7 353.2 442.5 350.0C444.5 342.4 441.6 330.1 434.7 316.3C432.1 311.3 429.6 305.2 428.9 302.7C427.0 295.0 424.5 293.5 413.6 293.5C404.6 293.5 404.2 293.6 393.8 298.7C387.9 301.5 380.5 304.5 377.3 305.4C374.0 306.2 364.0 310.5 355.1 314.9C346.1 319.4 337.9 323.0 336.8 323.0C335.7 323.0 332.1 324.1 328.7 325.4C325.3 326.8 320.2 328.4 317.5 329.1C314.8 329.8 302.7 335.2 290.6 341.2C271.3 350.9 267.9 352.2 261.6 352.9C257.7 353.4 252.0 354.8 249.0 356.1C240.5 359.8 221.3 359.6 211.8 355.8C208.2 354.2 204.3 353.0 203.2 353.0C202.2 353.0 196.7 350.7 190.9 347.9C185.2 345.1 177.8 342.2 174.5 341.3C171.2 340.5 161.8 336.4 153.7 332.3C145.5 328.3 136.1 324.2 132.7 323.3C129.3 322.5 119.8 318.4 111.7 314.3C103.5 310.3 94.1 306.2 90.7 305.3C87.3 304.5 79.3 301.2 73.0 298.0C56.5 289.8 54.8 289.3 47.8 292.0C37.8 295.7 27.1 307.4 27.0 314.6C27.0 315.8 24.4 321.8 21.2 328.1C15.5 339.5 15.5 339.5 15.5 356.0C15.5 372.5 15.5 372.5 18.9 378.8C23.1 386.5 25.4 388.3 39.2 395.0C47.7 399.2 51.3 400.4 57.4 401.1C63.6 401.7 65.8 402.5 69.6 405.2C77.9 411.1 79.4 411.9 84.2 413.0C86.8 413.5 93.1 416.0 98.0 418.5C103.0 421.0 109.9 423.8 113.3 424.7C116.7 425.5 123.5 428.2 128.3 430.7C133.1 433.1 139.9 435.8 143.3 436.7C146.7 437.5 153.5 440.2 158.3 442.7C163.1 445.1 169.9 447.8 173.3 448.7C176.7 449.5 183.1 452.0 187.5 454.3C201.2 461.2 199.6 460.9 232.0 460.7C261.6 460.5 261.6 460.5 272.2 455.3ZM247.5 338.4C250.8 337.1 256.7 335.6 260.6 335.1C268.4 334.2 269.9 333.5 277.2 328.0C280.0 325.9 283.9 323.9 285.9 323.5C287.9 323.1 292.2 321.8 295.5 320.5C298.8 319.2 303.8 317.6 306.5 316.9C309.2 316.2 321.2 310.9 333.0 305.0C344.8 299.1 357.3 293.5 360.7 292.7C364.1 291.8 370.9 289.1 375.7 286.7C380.5 284.2 387.1 281.5 390.2 280.6C396.2 278.9 397.8 277.3 402.0 269.1C405.4 262.4 405.0 256.9 400.5 248.0C396.2 239.4 385.5 227.7 377.3 222.4C374.1 220.3 370.5 216.7 368.1 213.2C358.5 199.2 354.1 197.0 336.0 197.0C324.3 197.0 322.2 197.3 316.5 199.5C313.0 200.9 307.8 202.7 304.8 203.5C301.8 204.2 294.7 207.2 289.0 209.9C283.3 212.7 277.7 215.0 276.6 215.0C275.4 215.0 271.8 216.2 268.5 217.6C265.2 218.9 259.3 220.4 255.4 220.9C251.6 221.4 246.2 222.8 243.4 224.0C236.7 227.2 217.8 228.0 211.0 225.5C208.5 224.6 204.2 223.2 201.5 222.3C198.8 221.5 193.0 219.5 188.8 217.9C184.6 216.3 180.3 215.0 179.3 215.0C178.3 215.0 169.4 211.1 159.6 206.3C141.6 197.5 141.6 197.5 128.1 197.2C108.3 196.7 109.9 195.8 86.6 218.8C64.2 241.1 63.0 242.8 63.0 254.0C63.0 269.0 68.3 274.7 95.0 288.0C105.0 293.0 115.9 297.8 119.3 298.7C122.7 299.5 132.2 303.6 140.3 307.7C148.5 311.7 157.9 315.8 161.3 316.7C164.7 317.5 174.2 321.6 182.3 325.7C190.5 329.7 199.7 333.7 202.8 334.5C205.9 335.3 211.2 337.1 214.5 338.5C223.2 342.1 238.8 342.1 247.5 338.4ZM254.8 182.1C259.0 180.5 264.5 178.7 267.0 178.0C272.9 176.4 287.2 162.8 289.6 156.4C291.9 150.3 291.2 137.1 288.2 131.3C287.0 129.0 285.5 124.7 284.9 121.8C284.3 118.9 282.9 114.8 281.9 112.8C280.8 110.7 279.5 106.7 278.9 103.8C278.3 100.9 276.9 96.8 275.9 94.8C274.8 92.7 273.5 88.7 272.9 85.8C272.3 82.9 270.9 78.8 269.9 76.8C268.8 74.7 267.5 70.7 266.9 67.8C266.3 64.9 264.9 60.9 263.9 58.8C262.9 56.8 261.6 53.0 261.0 50.3C260.4 47.7 258.9 43.0 257.6 40.0C256.3 37.0 254.9 32.7 254.5 30.5C253.6 24.4 246.0 10.9 242.1 8.3C232.3 1.7 222.7 9.0 219.1 25.8C218.5 28.7 217.2 32.7 216.1 34.8C215.1 36.8 213.7 40.9 213.1 43.8C212.5 46.7 211.2 50.7 210.1 52.8C209.1 54.8 207.7 58.9 207.1 61.8C206.5 64.7 205.2 68.7 204.1 70.8C203.1 72.8 201.7 76.9 201.1 79.8C200.5 82.7 199.2 86.7 198.1 88.8C197.1 90.8 195.7 94.9 195.1 97.8C194.5 100.7 193.2 104.7 192.1 106.8C191.1 108.8 189.7 112.9 189.1 115.8C188.5 118.7 187.2 122.7 186.1 124.8C185.1 126.8 183.7 130.9 183.1 133.8C182.5 136.7 181.1 140.9 179.9 143.2C177.1 148.7 177.1 155.4 180.0 161.1C184.2 169.3 185.8 170.9 191.8 172.6C194.9 173.5 201.1 176.1 205.5 178.3C218.0 184.5 219.3 184.9 233.8 184.9C246.1 185.0 247.7 184.8 254.8 182.1ZM157.8 146.0C162.0 143.4 164.9 137.0 165.0 130.4C165.0 126.3 166.0 123.2 170.4 114.3C173.3 108.3 176.3 101.0 176.9 98.2C177.5 95.3 179.0 91.0 180.2 88.7C182.0 85.4 182.5 82.8 182.5 77.0C182.5 69.7 182.3 69.1 176.1 57.1C171.0 47.3 168.9 44.3 165.8 42.1C163.7 40.7 159.4 37.5 156.2 35.2C153.1 32.8 145.2 28.2 138.8 24.9C123.5 17.2 120.9 17.1 113.9 23.7C105.3 31.8 103.6 38.4 108.1 47.1C109.4 49.8 110.6 54.5 111.1 59.1C111.5 63.7 112.7 68.5 114.1 71.1C115.4 73.8 116.6 78.5 117.1 83.1C117.5 87.5 118.7 92.5 119.9 94.9C121.1 97.1 122.5 101.3 123.1 104.1C123.7 107.0 125.3 111.6 126.6 114.4C128.1 117.5 129.0 121.4 129.0 124.3C129.0 140.0 146.3 153.0 157.8 146.0ZM328.4 141.7C332.6 138.5 343.2 118.2 344.9 110.2C345.5 107.3 346.9 103.1 348.1 100.9C349.3 98.5 350.5 93.5 350.9 89.1C351.4 84.5 352.6 79.8 353.9 77.1C355.3 74.5 356.5 69.7 356.9 65.1C357.4 60.4 358.6 55.8 360.0 53.0C363.2 46.8 364.0 33.9 361.5 27.5C358.4 19.1 352.5 17.1 342.5 20.9C339.8 22.0 335.6 23.3 333.4 23.9C331.1 24.5 327.1 26.7 324.4 28.8C321.7 31.0 317.1 33.9 314.2 35.5C308.0 38.8 300.1 46.9 297.0 53.1C295.7 55.5 293.2 59.3 291.4 61.5C286.5 67.6 285.7 70.2 287.6 75.3C288.5 77.6 290.0 82.4 290.9 86.0C291.9 89.6 293.4 93.9 294.3 95.7C295.3 97.5 296.5 101.2 297.1 104.1C297.7 107.0 299.3 111.6 300.6 114.4C302.1 117.6 303.0 121.4 303.0 124.5C303.1 131.0 305.7 136.6 311.0 141.4C316.2 146.1 322.4 146.2 328.4 141.7Z"/></svg><span><b style="font-weight:500">MINI</b><b style="font-weight:500">CHIC</b></span></a>
+    <ul>
+      <li><a href="https://www.useminichic.com.br/">Loja online</a></li>
+      <li><a href="https://www.useminichic.com.br/pagina/a-minichic.html">Sobre a marca</a></li>
+      <li><a href="https://www.instagram.com/minichiccampogrande/">Instagram</a></li>
+      <li><a href="https://wa.me/5521992094502">WhatsApp</a></li>
+    </ul>
+    <span>MINICHIC · CNPJ 11.454.548/0002-09</span>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5521992094502?text=Ol%C3%A1!%20Vim%20pelo%20site." aria-label="Falar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+</a>
+<div class="previa">Prévia de redesign · não é o site oficial</div>
+<script>window.__A={"p-duna-pacific": "img/p-duna-pacific.webp", "p-guatemala": "img/p-guatemala.webp", "p-barrel": "img/p-barrel.webp", "p-areia-oversize": "img/p-areia-oversize.webp", "p-areia-reta": "img/p-areia-reta.webp", "p-ceu-rustic": "img/p-ceu-rustic.webp", "p-mare-andes": "img/p-mare-andes.webp", "p-aguacoco-blusa": "img/p-aguacoco-blusa.webp", "p-aguacoco-short": "img/p-aguacoco-short.webp", "p-teodora": "img/p-teodora.webp", "p-hada": "img/p-hada.webp", "p-lily": "img/p-lily.webp", "c-guatemala": "img/c-guatemala.webp", "c-hada": "img/c-hada.webp", "c-teodora": "img/c-teodora.webp", "c-lily": "img/c-lily.webp", "c-duna-pacific": "img/c-duna-pacific.webp"};window.__P=[{"id": "duna-pacific", "nome": "Vestido Duna Pacific", "preco": 179.0, "pix": 170.05, "parc": "4x de R$ 44,75", "collab": true}, {"id": "guatemala", "nome": "Vestido Longo Guatemala", "preco": 179.0, "pix": 170.05, "parc": "4x de R$ 44,75", "collab": true}, {"id": "barrel", "nome": "Cal\u00e7a Areia Barrel", "preco": 149.0, "pix": 141.55, "parc": "3x de R$ 49,66", "collab": true}, {"id": "areia-oversize", "nome": "Camisa Areia Oversize", "preco": 149.0, "pix": 141.55, "parc": "3x de R$ 49,66", "collab": true}, {"id": "areia-reta", "nome": "Cal\u00e7a Areia Reta", "preco": 149.0, "pix": 141.55, "parc": "3x de R$ 49,66", "collab": true}, {"id": "ceu-rustic", "nome": "Blusa C\u00e9u Rustic", "preco": 109.0, "pix": 103.55, "parc": "2x de R$ 54,50", "collab": true}, {"id": "mare-andes", "nome": "Bata Mar\u00e9 Andes", "preco": 99.0, "pix": 94.05, "parc": "2x de R$ 49,50", "collab": true}, {"id": "aguacoco-blusa", "nome": "Blusa \u00c1gua de Coco", "preco": 89.0, "pix": 84.55, "parc": "2x de R$ 44,50", "collab": true}, {"id": "aguacoco-short", "nome": "Short \u00c1gua de Coco", "preco": 89.0, "pix": 84.55, "parc": "2x de R$ 44,50", "collab": true}, {"id": "teodora", "nome": "Cal\u00e7a Flare Teodora", "preco": 189.0, "pix": 179.55, "parc": "4x de R$ 47,25", "collab": false}, {"id": "hada", "nome": "Body Hada", "preco": 89.0, "pix": 84.55, "parc": "2x de R$ 44,50", "collab": false}, {"id": "lily", "nome": "Blusa Lily Amarra\u00e7\u00e3o", "preco": 79.0, "pix": 75.05, "parc": "", "collab": false}];window.__M={"guatemala": {"w": 290, "h": 961, "bbox": [200, 112, 490, 1073], "W": 779, "H": 1093}, "hada": {"w": 280, "h": 915, "bbox": [288, 152, 568, 1067], "W": 779, "H": 1093}, "teodora": {"w": 322, "h": 941, "bbox": [227, 97, 549, 1038], "W": 779, "H": 1093}, "lily": {"w": 705, "h": 1082, "bbox": [74, 11, 779, 1093], "W": 779, "H": 1093}, "duna-pacific": {"w": 311, "h": 807, "bbox": [302, 244, 613, 1051], "W": 779, "H": 1093}};</script>
+<script src="app.js" defer></script>
+</body>
+</html>
